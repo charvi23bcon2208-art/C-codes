@@ -1,0 +1,323 @@
+1. write a c++ program where we are using class to prnt a student's age and name and roll number using member function in a class
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+public://access specifier
+
+    string name;// data members down the line
+    int age;
+    int rollNumber;
+
+    // Member function 
+    void displayInfo() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+        cout << "Roll Number: " << rollNumber << endl;
+    }
+};
+
+int main() {
+    Student s1;
+
+    // Assigning values to data members
+    s1.name = "Alex";
+    s1.age = 20;
+    s1.rollNumber = 101;
+
+    // Calling the member function
+    s1.displayInfo();
+
+    return 0;
+}
+ OUTPUT
+Name: Alex
+Age: 20
+Roll Number: 101
+
+
+2. write a c++ program to use parameterised constructor
+
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+private:
+    int length;
+    int breadth;
+
+public:
+    // Parameterized constructor
+    Rectangle(int l, int b) {
+        length = l;
+        breadth = b;
+        cout << "Parameterized constructor called." << endl;
+    }
+
+    // Function to calculate and display area
+    void displayArea() {
+        cout << "Area of Rectangle: " << length * breadth << endl;
+    }
+};
+
+int main() {
+    // Creating an object and passing arguments to the constructor
+    Rectangle rect(10, 5);
+
+    // Calling member function
+    rect.displayArea();
+
+    return 0;
+}
+
+
+OUTPUT
+Parameterized constructor called.
+Area of Rectangle: 50
+
+
+3. default constructor
+
+
+
+#include <iostream>
+#include <string>
+
+class Car {
+public:
+    std::string brand;
+    int year;
+
+    // Default Constructor: No parameters
+    Car() {
+        brand = "Unknown";
+        year = 2024;
+        std::cout << "Default constructor called!" << std::endl;
+    }
+
+    void display() {
+        std::cout << "Brand: " << brand << ", Year: " << year << std::endl;
+    }
+};
+
+int main() {
+    // Creating an object triggers the default constructor
+    Car myCar; 
+
+    // Displaying the initialized values
+    myCar.display();
+
+    return 0;
+}
+
+
+
+OUTPUT
+
+Default constructor called!
+Brand: Unknown, Year: 2024
+
+
+4. COPY CONSTRUCTOR
+
+ #include <iostream>
+using namespace std;
+
+class Student {
+private:
+    int rollNo;
+    double marks;
+
+public:
+    // Parameterized Constructor
+    Student(int r, double m) {
+        rollNo = r;
+        marks = m;
+    }
+
+    // User-Defined Copy Constructor
+    // Takes a reference to an object of the same class
+    Student(const Student &other) {
+        rollNo = other.rollNo;
+        marks = other.marks;
+        cout << "Copy constructor called!" << endl;
+    }
+
+    void display() {
+        cout << "Roll No: " << rollNo << ", Marks: " << marks << endl;
+    }
+};
+
+int main() {
+    // Creating first object using parameterized constructor
+    Student s1(101, 88.5);
+    cout << "Student 1 details: ";
+    s1.display();
+
+    // Method 1: Creating a second object using s1 (Calls copy constructor)
+    Student s2(s1); 
+    cout << "Student 2 details (copied from s1): ";
+    s2.display();
+
+    // Method 2: Another way to invoke the copy constructor
+    Student s3 = s1;
+    cout << "Student 3 details (copied from s1): ";
+    s3.display();
+
+    return 0;
+}
+ OUTPUT
+
+Copy constructor called!
+Student 2 details (copied from s1): Roll No: 101, Marks: 88.5
+Copy constructor called!
+Student 3 details (copied from s1): Roll No: 101, Marks: 88.5
+
+
+5. FUNCTION OVERLOADING
+
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+public:
+    int length, width;
+
+    // 1. Default Constructor
+    Rectangle() {
+        length = 1;
+        width = 1;
+    }
+
+    // 2. Parameterized Constructor (Single argument for a Square)
+    Rectangle(int side) {
+        length = side;
+        width = side;
+    }
+
+    // 3. Parameterized Constructor (Two arguments)
+    Rectangle(int l, int w) {
+        length = l;
+        width = w;
+    }
+
+    void displayArea() {
+        cout << "Area: " << length * width << endl;
+    }
+};
+
+int main() {
+    Rectangle rect1;          // Calls Default Constructor (1x1)
+    Rectangle rect2(5);       // Calls Parameterized Constructor #2 (5x5)
+    Rectangle rect3(5, 3);    // Calls Parameterized Constructor #3 (5x3)
+
+    rect1.displayArea();      // Output: Area: 1
+    rect2.displayArea();      // Output: Area: 25
+    rect3.displayArea();      // Output: Area: 15
+
+    return 0;
+}
+
+
+6. wap c++ to create a student management  system which stores and display a students details
+name
+roll number
+email ID
+mobile number
+batch
+crt class number
+using constructor overloading.
+
+
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int rollNumber;
+    string email;
+    string mobile;
+    string batch;
+    string crtClass;
+
+public:
+    // Constructor 1: Basic details (Partial data)
+    Student(string n, int roll) {
+        name = n;
+        rollNumber = roll;
+        email = "Not Provided";
+        mobile = "Not Provided";
+        batch = "General";
+        crtClass = "N/A";
+    }
+
+    // Constructor 2: Full details (Constructor Overloading)
+    Student(string n, int roll, string em, string mob, string b, string crt) {
+        name = n;
+        rollNumber = roll;
+        email = em;
+        mobile = mob;
+        batch = b;
+        crtClass = crt;
+    }
+
+    // Function to display student information
+    void display() {
+        cout << "\n--- Student Record ---" << endl;
+        cout << "Roll No    : " << rollNumber << endl;
+        cout << "Name       : " << name << endl;
+        cout << "Email ID   : " << email << endl;
+        cout << "Mobile No  : " << mobile << endl;
+        cout << "Batch      : " << batch << endl;
+        cout << "CRT Class  : " << crtClass << endl;
+        cout << "----------------------" << endl;
+    }
+};
+
+int main() {
+    cout << "=== Student Management System ===\n" << endl;
+
+    // Creating object using the first constructor
+    Student s1("Alice Smith", 101);
+
+    // Creating object using the overloaded (second) constructor
+    Student s2("Bob Johnson", 102, "bob.j@example.com", "9876543210", "2024-CSE", "B-12");
+
+    // Displaying details
+    s1.display();
+    s2.display();
+
+    return 0;
+}
+
+
+
+OUTPUT
+
+=== Student Management System ===
+
+
+--- Student Record ---
+Roll No    : 101
+Name       : Alice Smith
+Email ID   : Not Provided
+Mobile No  : Not Provided
+Batch      : General
+CRT Class  : N/A
+----------------------
+
+--- Student Record ---
+Roll No    : 102
+Name       : Bob Johnson
+Email ID   : bob.j@example.com
+Mobile No  : 9876543210
+Batch      : 2024-CSE
+CRT Class  : B-12
+----------------------
+
