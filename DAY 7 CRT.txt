@@ -1,0 +1,278 @@
+DAY 7 CRT
+
+1. inheritance
+#include <iostream>
+
+using namespace std;
+// Base Class or Parent class
+class Player
+{
+public:
+    string name;
+    int runs;
+
+    void setName(string n)
+    {
+        name = n;
+    }
+    void setRuns(int r)
+    {
+        runs = r;
+    }
+};
+// Dervied Class or Child class
+class Cricketer : public Player
+{
+public:
+    string country;
+    Cricketer(string s)
+    {
+        country = s;
+    }
+    void show()
+    {
+        cout << "Name: " << name << endl;
+        cout << "Runs: " << runs << endl;
+        cout << "Country: " << country << endl;
+    }
+};
+
+int main()
+{
+    int runs;
+    cin >> runs;
+    Cricketer c1("India");
+    c1.setName("Virat kohli");
+    c1.setRuns(runs);
+    c1.show();
+    return 0;
+}
+
+2. multilevel inheritance
+
+
+
+#include <iostream>
+
+using namespace std;
+// Base Class or Parent class
+class Player
+{
+public:
+    string name;
+    int runs;
+
+    void setName(string n)
+    {
+        name = n;
+    }
+    void setRuns(int r)
+    {
+        runs = r;
+    }
+};
+// Dervied Class or Child class
+class Cricketer : public Player
+{
+public:
+    string country;
+    void setCountry(string s)
+    {
+        country = s;
+    }
+};
+
+// Dervied Class or Child class of Cricketer class
+class Batter : public Cricketer
+{
+public:
+    int centuries;
+    void setCenturies(int c)
+    {
+        centuries = c;
+    }
+    void show()
+    {
+        cout << "Name: " << name << endl;
+        cout << "Runs: " << runs << endl;
+        cout << "Country: " << country << endl;
+        cout << "Centuries: " << centuries << endl;
+    }
+};
+int main()
+{
+    int runs;
+    cin >> runs;
+    Batter c1;
+    c1.setCountry("India");
+    c1.setName("Virat kohli");
+    c1.setRuns(runs);
+    c1.setCenturies(43);
+    c1.show();
+    return 0;
+}
+
+
+23. hierarchical inheritance
+#include <iostream>
+
+using namespace std;
+// Base Class or Parent class
+class Player
+{
+public:
+    string name;
+    int runs;
+
+    void setName(string n)
+    {
+        name = n;
+    }
+    void setRuns(int r)
+    {
+        runs = r;
+    }
+};
+// Dervied Class or Child class
+class Cricketer : public Player
+{
+public:
+    string country;
+    void setCountry(string s)
+    {
+        country = s;
+    }
+    void show()
+    {
+        cout << "Name: " << name << endl;
+        cout << "Runs: " << runs << endl;
+        cout << "Country: " << country << endl;
+    }
+};
+
+class Footballer : public Player
+{
+public:
+    string club;
+    int goals;
+    void setClub(string c, int goals)
+    {
+        club = c;
+        this->goals = goals;
+    }
+
+    void show()
+    {
+        cout << "Name: " << name << endl;
+
+        cout << "Club: " << club << endl;
+        cout << "Goals: " << goals << endl;
+    }
+};
+
+int main()
+{
+    int runs;
+    cin >> runs;
+    Cricketer c1;
+    c1.setCountry("India");
+    c1.setName("Virat kohli");
+    c1.setRuns(runs);
+    c1.show();
+
+    Footballer f1;
+    f1.setName("Sunil Chhetri");
+    f1.setClub("Bengluru fc", 85);
+    f1.show();
+    return 0;
+}
+
+
+5. Create a college management system in which a single parent class of college is extended with students and a teacher class(inheritance)
+
+student -> roll number- mobile  number- email id- subjecr- code- year
+teacher -> name- age- department- salary
+
+and call a virtual function to show their classes
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Base Parent Class
+class College {
+public:
+    // Virtual function to be overridden by derived classes
+    virtual void showDetails() = 0; 
+    virtual ~College() {} // Virtual destructor for proper cleanup
+};
+
+// Derived Student Class
+class Student : public College {
+private:
+    int rollNumber;
+    string mobileNumber;
+    string emailId;
+    string subject;
+    string code;
+    int year;
+
+public:
+    Student(int roll, string mob, string email, string sub, string c, int yr) 
+        : rollNumber(roll), mobileNumber(mob), emailId(email), subject(sub), code(c), year(yr) {}
+
+    void showDetails() override {
+        cout << "--- Student Details ---" << endl;
+        cout << "Roll No: " << rollNumber << "\nMobile: " << mobileNumber 
+             << "\nEmail: " << emailId << "\nSubject: " << subject 
+             << "\nCode: " << code << "\nYear: " << year << endl << endl;
+    }
+};
+
+// Derived Teacher Class
+class Teacher : public College {
+private:
+    string name;
+    int age;
+    string department;
+    double salary;
+
+public:
+    Teacher(string n, int a, string dept, double sal) 
+        : name(n), age(a), department(dept), salary(sal) {}
+
+    void showDetails() override {
+        cout << "--- Teacher Details ---" << endl;
+        cout << "Name: " << name << "\nAge: " << age 
+             << "\nDepartment: " << department << "\nSalary: $" << salary << endl << endl;
+    }
+};
+
+int main() {
+    // Array of base class pointers to demonstrate polymorphism
+    vector<College*> collegeMembers;
+
+    // Adding records
+    collegeMembers.push_back(new Student(101, "9876543210", "stud@edu.com", "Computer Science", "CS50", 2024));
+    collegeMembers.push_back(new Teacher("Professor Oak", 55, "Biology", 75000.00));
+
+    // Calling the virtual function for each object
+    for (College* member : collegeMembers) {
+        member->showDetails();
+    }
+
+    // Cleaning up allocated memory
+    for (College* member : collegeMembers) {
+        delete member;
+    }
+
+    return 0;
+}
