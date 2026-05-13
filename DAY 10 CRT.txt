@@ -1,0 +1,98 @@
+DAY 10 CRT
+
+
+CHARACTER ARRAY
+APPEND
+
+1. METHOD OF STRING
+
+
+//wap to
+
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+
+int main(){
+    string str1="Hello";
+    string str2="World";
+    cout<<str1<<" "<<str2<<endl;
+    //methods of string
+    //1. length
+    cout<<"Length of String is :"<<str1.length()<<endl;
+    //2. Append
+    cout<<"After Appending : "<<str1.append("Students")<<endl;
+    //3. Empty String
+    cout<<"Is String Empty : "<<str1.empty()<<endl;
+    //4. Concatenate
+    cout<<"After Concatenation of String : "<<str1+"Bacho"<<endl;
+    cout<<"After Concatenation of String 2 : "<<str1<<endl;
+    //5. pushback() method
+    str2.push_back('U');
+    cout<<"After pushback : "<<str2<<endl;
+    //6. popback() method
+    str2.pop_back();   
+    cout<<"After popback : "<<str2<<endl;
+    //7. find() method
+    int index = str1.find("ello");
+    cout<<"Index of substring is : "<<index<<endl;
+    //8. at method. str1[1];
+    char ch = str1.at(1);
+    cout<<"Character at index 1 is : "<<ch<<endl;
+    //9. swap() method
+    str1.swap(str2);
+    cout<<"After Swapping String 1 and String 2 : "<<endl;
+    cout<<"String 1 : "<<str1<<endl;
+    cout<<"String 2 : "<<str2<<endl;
+    //10. substring() method
+    string substr = str2.substr(5,6);
+    cout<<"Substring is : "<<substr<<endl;
+    //11. getline() method
+    string str3;
+    //11. cin>>str3;
+    getline(cin, str3); 
+    cout<<"You entered : "<<str3<<endl;
+
+    return 0;
+}
+
+
+
+
+2. REVERSE STRING
+
+
+#include <iostream>
+#include <string> // Added for string support
+using namespace std;
+
+class reverse {
+public:
+    void reverse_string(string str) {
+        int start = 0;
+        int end = str.length() - 1; // Get length of the string
+
+        while (start < end) {
+            // Swap characters
+            char temp = str[start];
+            str[start] = str[end];
+            str[end] = temp;
+            
+            start++;
+            end--;
+        }
+        
+        cout << str << endl;
+    }
+};
+
+int main() {
+    string myString = "Hello";
+    
+    reverse s1;
+    s1.reverse_string(myString);
+    
+    return 0;
+}
+

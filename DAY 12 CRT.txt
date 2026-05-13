@@ -1,0 +1,209 @@
+DAY 12 CRT
+
+SORTING
+
+
+1. BUBBLE SORT
+
+Swapping is implemented in the pseudocode.
+The biggest element to the last
+
+8 7 3 6 5 2 
+ All conditions for 8 are true, hence swapped.
+then for 7, true as well.
+for 3 
+for everything as well
+
+
+#include <iostream>
+using namespace std;
+void swap_array(int &a, int &b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+void Bubble_Sort(int nums[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        bool flag = false;
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (nums[j] > nums[j + 1])
+            {
+                cout << "Array is Sorted Here" << endl;
+                swap_array(nums[j], nums[j + 1]);
+                flag = true; // flag != flag;
+            }
+        }
+        if (!flag)
+        {
+            cout << "Array is already Sorted" << endl;
+            break;
+        }
+    }
+}
+
+int main()
+{
+    int arr[5] = {1, 2, 3, 5, 4};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    Bubble_Sort(arr, size);
+    for (int i = 0; i < size; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+
+2. INSERTION
+: We take the smallest element to the last:
+
+
+
+
+
+
+3. SELECTION
+
+in a given array, for example, 26 10 15 17 86 -
+ The minimum number gets compared with all of the numbers or arrays, with each comparison, the number that is greater than the minimum swaps itself to create a sorted array.
+ 
+
+#include<iostream>
+#include<algorithm>
+using namespace std;
+            
+        void selectionSort(int arr[], int n)
+        {
+    for (int i = 0; i < n - 1; i++) {
+        int min_idx = i;
+
+        for (int j = i + 1; j < n; j++) 
+        {
+            if (arr[j] < arr[min_idx]) 
+            {
+                min_idx = j;
+            }
+        }
+
+        if (min_idx != i) 
+        {
+            swap(arr[min_idx], arr[i]);
+        }
+    }
+}
+
+int main() {
+    int data[] = {64, 25, 12, 22, 11};
+    int size = sizeof(data) / sizeof(data[0]);
+
+    selectionSort(data, size);
+
+    cout << "Sorted array: \n";
+    for (int i = 0; i < size; i++) 
+    {
+        cout << data[i] << " ";
+    }
+    return 0;
+}
+
+4. QUICK
+5. MERGE 
+6. HEAP
+
+
+RECURSION
+
+A function calling itself again and again
+
+to achieve recursion
+
+3 steps
+basis
+small calculation
+recursive call
+
+` FACTORIAL `
+
+
+#include <iostream>
+
+int factorial(int n) {
+    if (n <= 1) {
+        return 1;
+    }
+    else {
+        return n * factorial(n - 1);
+    }
+}
+
+int main() {
+    std::cout << "Factorial of 5: " << factorial(5); // Output: 120
+    return 0;
+}
+
+
+`FIBONACCI SERIES`
+
+
+
+#include <iostream>
+using namespace std;
+
+                                                             // Recursive function to find the nth Fibonacci number
+int fibonacci(int n) {
+    if (n <= 1)
+ {                                                              // Base cases: F(0) = 0, F(1) = 1
+        return n;
+    }
+                                                             // Recursive case: F(n) = F(n-1) + F(n-2)
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of terms: ";
+    cin >> n;
+
+    cout << "Fibonacci Series: ";
+    for (int i = 0; i < n; i++) {
+        cout << fibonacci(i) << " ";                                     // Call recursive function for each term
+    }
+    return 0;
+}
+
+
+SUM OF DIGITS
+
+#include <iostream>
+using namespace std;
+
+int sumOfDigits(int n) {
+    // Base Case: If the number becomes 0, return 0
+    if (n == 0) {
+        return 0;
+    }
+    // Recursive Case: Last digit + sum of remaining digits
+    return (n % 10) + sumOfDigits(n / 10);
+}
+
+int main() {
+    int num;
+    cout << "Enter a number: ";
+    cin >> num;
+
+    // Use abs() to handle negative numbers
+    int result = sumOfDigits(abs(num));
+    
+    cout << "Sum of digits: " << result << endl;
+    return 0;
+}
+
+
